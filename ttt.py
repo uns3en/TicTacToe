@@ -1,18 +1,18 @@
 #################################################
-#                                               #
-#       First project ever by teh.f4ll3n        #
-#           https://github.com/uns3en           #
-#      A simple game of Tic Tac Toe built       #
-#             to run in Windows.                #
-#             Licence: GNU GPLv2                #
-#                                               #
+#...............................................#
+#.......First project ever by teh.f4ll3n........#
+#...........https://github.com/uns3en...........#
+#......A simple game of Tic Tac Toe built.......#
+#.............to run in Windows.................#
+#.............Licence: GNU GPLv2................#
+# ..............................................#
 #################################################  
 
 
 
 
 #imports
-import os
+import os, sys, pygame
  
 #vars
 global winCond
