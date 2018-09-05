@@ -12,7 +12,7 @@
 
 
 #imports
-import os, sys, pygame
+import os, sys, platform
  
 #vars
 global winCond
@@ -22,12 +22,20 @@ player = 1
 turn = 0
  
 #clear screen
-os.system('cls')
- 
+def clear_screen():
+	if platform.system() == "Windows":
+		os.system('cls')
+	elif platform.system() == "Linux":
+		os.system('clear')
+	elif platform.system() == "Darwin":
+		os.system('clear')
+
+clear_screen()
+
 #initial print
 print('This is a game of Tic Tac Toe.')
 print('You make your move by entering available field number.\n')
- 
+
 #define field draw function
 def draw_field():
 	print( '   |   |   ')
@@ -71,9 +79,9 @@ while winCond == 0:
 			draw_field()
 			print('Turn ' + str(turn + 1))
 			tempVal = int(input ('Player ' + str(player) + ', please enter the field number: '))
-			os.system('cls')
-			if field[tempVal-1] in ['X', 'O']:
-				os.system('cls')
+			clear_screen()
+			if field[tempVal-1] in ['X', 'O']:# or 0 > tempVal > 9:
+				clear_screen()
 				print('This is not a valid field\n')
 				continue
 			else:
@@ -98,7 +106,7 @@ while winCond == 0:
 		print('\nKeyboardInterrupt received. Terminated.')
 		break
 	except:
-		os.system('cls')
+		clear_screen()
 		print('Please enter a number between 1 and 9.')
 	finally:
 		if (winCond == 0 and turn == 9):
