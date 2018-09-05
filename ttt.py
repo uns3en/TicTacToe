@@ -1,10 +1,10 @@
 #################################################
 #...............................................#
-#.......First project ever by teh.f4ll3n........#
-#...........https://github.com/uns3en...........#
-#......A simple game of Tic Tac Toe built.......#
-#.............to run in Windows.................#
-#.............Licence: GNU GPLv2................#
+#...... First project ever by teh.f4ll3n .......#
+#.......... https://github.com/uns3en ..........#
+#........ A simple game of Tic Tac Toe .........#
+#...............................................#
+#............ Licence: GNU GPLv2 ...............#
 # ..............................................#
 #################################################  
 
@@ -25,11 +25,12 @@ turn = 0
 def clear_screen():
 	if platform.system() == "Windows":
 		os.system('cls')
-	elif platform.system() == "Linux":
+	elif platform.system() == "Linux" or platform.system() == "Linux2":
 		os.system('clear')
 	elif platform.system() == "Darwin":
 		os.system('clear')
 
+#clear pre-run output
 clear_screen()
 
 #initial print
