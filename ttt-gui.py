@@ -30,8 +30,8 @@ while run:
 	#display game window with an image background
 	gameWindow.fill(0)
 	gameWindow.blit(bgImage, (0, 0))
-	gameWindow.blit(xMark, (0, 0))
-	gameWindow.blit(oMark, (150, 150))
+	#gameWindow.blit(xMark, (0, 0))
+	#gameWindow.blit(oMark, (150, 150))
 	pygame.display.flip()
 
 	#quit in even of closing game (break infinite loop without having to kill the python process)
