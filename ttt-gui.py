@@ -15,7 +15,9 @@ pygame.init()
 #declaring vars
 windowHeight = 450
 windowWidth = 450
-#fieldVal = ['0','0','0','0','0','0','0','0','0']
+fieldVal = ([[0, 1, 2], 
+			 [3, 4, 5], 
+			 [6, 7, 8]])
 
 #defining main window size
 gameWindow = pygame.display.set_mode([windowWidth, windowHeight])
@@ -24,6 +26,13 @@ run = True
 bgImage = pygame.image.load("img/field.png")
 xMark = pygame.image.load("img/x-mark.png")
 oMark = pygame.image.load("img/o-mark.png")
+
+#def mouse_field(xcrd, ycrd):
+#	print(str(xcrd) + ", " + str(ycrd))
+#	xcrd = xcrd / 150
+#	ycrd = ycrd / 150
+#	return xcrd, ycrd
+
 
 #main loop
 while run:
@@ -39,3 +48,6 @@ while run:
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			exit(0)
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			mousePos = pygame.mouse.get_pos()
+			print(mousePos)
