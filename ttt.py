@@ -97,7 +97,6 @@ while winCond == 0:
 				else:
 					field[tempVal-1] = "O"
 					#check win condition, break if met, set winCond = 2
-					#check win condition, break if met, set winCond = 2
 					if checkWinCond() == 2:
 						winCond = checkWinCond()
 						break
