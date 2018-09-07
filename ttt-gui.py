@@ -82,10 +82,9 @@ while run and turn < 9:
 			mousePos = mousePosX, mousePosY
 			if player == 1:
 				fieldVal[mousePosX//150][mousePosY//150] = 'x'
-				player = 2
 				turn = turn + 1
+				player = 2
 			else:
 				fieldVal[mousePosX//150][mousePosY//150] = 'o'
+				turn = turn + 1
 				player = 1
-				turn = turn + 1	
-draw_field()
