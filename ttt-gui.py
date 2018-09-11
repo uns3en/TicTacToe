@@ -23,9 +23,7 @@ run = True
 result = True
 WHITE = (255, 255, 255)
 GREY = (180, 180, 180)
-fieldVal = ([[10, 20, 30], 
-			 [40, 50, 60], 
-			 [70, 80, 90]])
+fieldVal = ([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
 winLine = 0
 
 #defining main window size and caption
@@ -104,9 +102,8 @@ def draw_winner(b):
 	elif b == 0:
 		gameWindow.blit(pDraw, (75, 150))
 
-
-
 #main loop
+#def main_game():
 while run and turn < 9:
 	try:
 		draw_field()
@@ -140,6 +137,8 @@ while run and turn < 9:
 					player = 1
 	except KeyboardInterrupt:
 		break
+
+#main_game()
 
 #post-game loop to display results
 while result:
