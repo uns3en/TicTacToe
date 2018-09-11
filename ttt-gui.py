@@ -53,6 +53,7 @@ def draw_field():
 			j = j + 1
 		i = i + 1
 
+
 #define check win conditions method
 def checkWinCond():
 	if (fieldVal[0][0] == fieldVal[0][1] == fieldVal[0][2]):
