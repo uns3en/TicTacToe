@@ -13,6 +13,14 @@ import os, pygame
 import time
 pygame.init()
 
+#loading images to vars
+bgImage = pygame.image.load("img/field.png")
+xMark = pygame.image.load("img/x-mark.png")
+oMark = pygame.image.load("img/o-mark.png")
+p1Winner = pygame.image.load("img/p1wins.png")
+p2Winner = pygame.image.load("img/p2wins.png")
+pDraw = pygame.image.load("img/draw.png")
+
 #declaring vars
 windowHeight = 450
 windowWidth = 450
@@ -30,14 +38,6 @@ winLine = 0
 gameWindow = pygame.display.set_mode([windowWidth, windowHeight])
 pygame.display.set_caption('Tic-Tac-Toe', 'Xs vs Os. Fight!')
 
-#loading images to vars
-bgImage = pygame.image.load("img/field.png")
-xMark = pygame.image.load("img/x-mark.png")
-oMark = pygame.image.load("img/o-mark.png")
-p1Winner = pygame.image.load("img/p1wins.png")
-p2Winner = pygame.image.load("img/p2wins.png")
-pDraw = pygame.image.load("img/draw.png")
-
 #defining main field drawing method
 def draw_field():
 	#display game window with an image background
@@ -52,7 +52,6 @@ def draw_field():
 				gameWindow.blit(oMark, (i*150, j*150))
 			j = j + 1
 		i = i + 1
-
 
 #define check win conditions method
 def checkWinCond():
