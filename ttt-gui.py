@@ -13,6 +13,23 @@ import os, pygame
 import time
 pygame.init()
 
+#global fieldVal
+#global run
+#global turn
+#global player
+
+#define vars
+noQuit = True
+windowHeight = 450
+windowWidth = 450
+fieldVal = ([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
+player = 1
+run = True
+turn = 0
+winner = 0
+winLine = 0
+result = True
+
 #loading images to vars
 bgImage = pygame.image.load("img/field.png")
 xMark = pygame.image.load("img/x-mark.png")
@@ -20,19 +37,6 @@ oMark = pygame.image.load("img/o-mark.png")
 p1Winner = pygame.image.load("img/p1wins.png")
 p2Winner = pygame.image.load("img/p2wins.png")
 pDraw = pygame.image.load("img/draw.png")
-
-#declaring vars
-windowHeight = 450
-windowWidth = 450
-player = 1
-turn = 0
-winner = 0
-run = True
-result = True
-WHITE = (255, 255, 255)
-GREY = (180, 180, 180)
-fieldVal = ([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
-winLine = 0
 
 #defining main window size and caption
 gameWindow = pygame.display.set_mode([windowWidth, windowHeight])
@@ -76,6 +80,7 @@ def checkWinCond():
 
 #define draw win line
 def draw_line(a):
+	GREY = (180, 180, 180)
 	if a == 1:
 		pygame.draw.line(gameWindow, GREY, (75, 30), (75, 420), 3)
 	elif a == 2:
@@ -102,25 +107,29 @@ def draw_winner(b):
 	elif b == 0:
 		gameWindow.blit(pDraw, (75, 150))
 
+#reset board
+def clear_board():
+	vals = ([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
+	return vals
+
 #main loop
-#def main_game():
-while run and turn < 9:
-	try:
+def main_game_loop():
+
+	while run and turn < 9:
 		draw_field()
 		pygame.display.update()
 		for event in pygame.event.get():
-			
+		
 			#quit in even of closing game (break infinite loop without having to kill the python process)
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				exit(0)
-			
+		
 			# get mouse click coords
 			if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
 				mousePosX, mousePosY = pygame.mouse.get_pos()
 				mousePos = mousePosX, mousePosY
-
-				#update field value and chech if game is won
+					#update field value and chech if game is won
 				if player == 1 and fieldVal[mousePosX//150][mousePosY//150] not in ['x', 'o']:
 					fieldVal[mousePosX//150][mousePosY//150] = 'x'
 					turn = turn + 1
@@ -135,24 +144,33 @@ while run and turn < 9:
 					if run == False:
 						winner = 2
 					player = 1
-	except KeyboardInterrupt:
-		break
 
-#main_game()
+	#post-game loop to display results			
+	while result:
+		if run == False:
+			draw_field()
+			draw_line(winLine)
+			draw_winner(winner)
+			pygame.display.update()
+		elif turn == 9:
+			draw_field()
+			draw_winner(winner)
+			pygame.display.update()
+		for event in pygame.event.get():
+			#quit in even of closing game (break infinite loop without having to kill the python process)
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				exit(0)
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_q:
+					pygame.quit()
+					exit(0)
+				if event.key == pygame.K_SPACE:
+					fieldVal = clear_board()
+					main_game()
 
-#post-game loop to display results
-while result:
-	if run == False:
-		draw_field()
-		draw_line(winLine)
-		draw_winner(winner)
-		pygame.display.update()
-	elif turn == 9:
-		draw_field()
-		draw_winner(winner)
-		pygame.display.update()
-	for event in pygame.event.get():
-		#quit in even of closing game (break infinite loop without having to kill the python process)
-		if event.type == pygame.QUIT:
-			pygame.quit()
-			exit(0)	
+
+main_game_loop()
+while noQuit:
+	main_game_loop()
+
