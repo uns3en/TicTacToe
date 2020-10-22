@@ -13,20 +13,11 @@ import os, pygame
 import time
 pygame.init()
 
-#global fieldVal
-#global run
-#global turn
-#global player
-
 #define vars
 noQuit = True
 windowHeight = 450
 windowWidth = 450
-fieldVal = ([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
-player = 1
-run = True
-turn = 0
-winner = 0
+global winner
 winLine = 0
 result = True
 
@@ -114,7 +105,12 @@ def clear_board():
 
 #main loop
 def main_game_loop():
-
+	player = 1
+	winner = 0
+	run = True
+	turn = 0
+	global fieldVal
+	fieldVal = ([[10, 20, 30], [40, 50, 60], [70, 80, 90]])
 	while run and turn < 9:
 		draw_field()
 		pygame.display.update()
@@ -157,7 +153,7 @@ def main_game_loop():
 			draw_winner(winner)
 			pygame.display.update()
 		for event in pygame.event.get():
-			#quit in even of closing game (break infinite loop without having to kill the python process)
+			#quit in event of closing game (break infinite loop without having to kill the python process)
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				exit(0)
@@ -167,10 +163,9 @@ def main_game_loop():
 					exit(0)
 				if event.key == pygame.K_SPACE:
 					fieldVal = clear_board()
-					main_game()
+					main_game_loop()
 
 
-main_game_loop()
 while noQuit:
 	main_game_loop()
 
