@@ -9,8 +9,9 @@
 #################################################
 
 #imports
-import os, pygame
+import os
 import time
+import pygame
 pygame.init()
 
 #define vars
